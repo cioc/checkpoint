@@ -3,6 +3,27 @@ checkpoint
 
 A key/val store for checkpointing python objects to AWS S3.  The current serialization is pickle.  I'm working on improving everything.
 
+Look how simple:
+
+```python
+from Checkpoint import Checkpoint
+
+ch = Checkpoint(bucket='bucketnamehere')
+
+x = [1,2,3,4,5,6, 7]
+
+ch.store('mylist1', x)
+
+y = ch.load('mylist1')
+
+print y
+
+l = ch.list()
+for i in l:
+  print i.key
+
+```
+
 Setup
 =====
 
@@ -20,12 +41,36 @@ Our main class, Checkpoint, exposes a simple API to the user that allows them to
 Functions
 =========
 
-Checkpoint.store
-================
+Checkpoint.store(key, obj)
+==========================
 
-Checkpoint.load
-===============
+Stores obj at key in your bucket.  
 
-Checkpoint.list
-===============
+e.g.
+
+```python
+ch.store('mylist1', x)
+```
+
+Checkpoint.load(key)
+====================
+
+Returns the object stored at key in your bucket.
+
+e.g.
+```python
+y = ch.load('mylist1')
+```
+
+Checkpoint.list()
+=================
+
+Returns at interator over the items in your bucket.
+
+e.g.
+```python
+l = ch.list()
+for i in l:
+  print i.key
+```
 
