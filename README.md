@@ -3,7 +3,7 @@ checkpoint
 
 A key/val store for checkpointing python objects to AWS S3.  The current serialization is pickle.  I'm working on improving everything.
 
-A built this for saving the output of long running python scripts for later use. 
+I built this for saving the output of long running python scripts for later use. 
 
 Look how simple:
 
